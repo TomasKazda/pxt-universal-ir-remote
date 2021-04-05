@@ -23,11 +23,13 @@ namespace IR {
 
   //% blockId=IR_remote_read block="read IR key value"
   export function IR_read(): number {
-      return valuotokeyConversion();
+      if (state == 1) return irstate
+      return valuotokeyConversion()
   }
 
   //% blockId=IR_remote_readHEX block="read IR hex value"
   export function IR_readHex(): string {
+      if (state == 1) return to16BitHex(irstate)
       return to16BitHex(valuotokeyConversion());
   }
 
@@ -42,7 +44,7 @@ namespace IR {
 
   //% advanced=true shim=IR::irCode
   function irCode(): number {
-      return 0;
+      return -2;
   }
 
   function valuotokeyConversion():number{

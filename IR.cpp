@@ -44,13 +44,11 @@ namespace IR
     {
         uint32_t lasttime = system_timer_current_time_us();
         uint32_t nowtime;
-        while (!uBit.io.P1.getDigitalValue())
-            ;
+        while (!uBit.io.P1.getDigitalValue());
         nowtime = system_timer_current_time_us();
         if ((nowtime - lasttime) > 400 && (nowtime - lasttime) < 700)
         {
-            while (uBit.io.P1.getDigitalValue())
-                ;
+            while (uBit.io.P1.getDigitalValue());
             lasttime = system_timer_current_time_us();
             if ((lasttime - nowtime) > 400 && (lasttime - nowtime) < 700)
             {
@@ -108,8 +106,7 @@ namespace IR
         nowtime = system_timer_current_time_us();
         if ((nowtime - lasttime) < 10000 && (nowtime - lasttime) > 8000)
         {
-            while (uBit.io.P1.getDigitalValue())
-                ;
+            while (uBit.io.P1.getDigitalValue());
             lasttime = system_timer_current_time_us();
             if ((lasttime - nowtime) > 4000 && (lasttime - nowtime) < 5000)
             {
@@ -120,8 +117,7 @@ namespace IR
             }
             else if ((lasttime - nowtime) > 2000 && (lasttime - nowtime) < 2500)
             {
-                while (!uBit.io.P1.getDigitalValue())
-                    ;
+                while (!uBit.io.P1.getDigitalValue());
                 nowtime = system_timer_current_time_us();
                 if ((nowtime - lasttime) > 500 && (nowtime - lasttime) < 700)
                 {
