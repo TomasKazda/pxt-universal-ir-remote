@@ -6,6 +6,7 @@ basic.showLeds(`
 . . . . .
 . . . . .
 `)
+IR.init(1)
 IR.onIR_received(function (code: number) {
     switch (code) {
         case 0xFF00:break;

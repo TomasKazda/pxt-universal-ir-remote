@@ -9,8 +9,21 @@ modified by TomasKazda
 //% block="IR remote"
 namespace IR {
   let irstate:number;
+  let irstateLast:number;
+  let irstateTime:number;
   let state:number;
 
+    /**
+    * call initialization before first use!
+    */
+    //% blockId=IR_remote_init
+    //% blockGap=20 weight=90
+    //% block="connect ir receiver to |pin %pin"
+    //% pin.min=0 pin.max=20 pin.defl=1
+    //% shim=IR::init
+    export function init(pin: number): void {
+        return
+    }
 
   //% blockId=IR_remote_read block="read IR key value"
   export function IR_read(): number {
@@ -34,13 +47,13 @@ namespace IR {
   }
 
   //% advanced=true shim=IR::irCode
-  function irCode(pinNo: number): number {
+  function irCode(): number {
       return -2;
   }
 
   function valuotokeyConversion():number{
       let irdata:number = -1;
-      let irCd: number = irCode(1)
+      let irCd: number = irCode()
       if (irCd != 0) irdata = irCd
       return irdata;
   }
@@ -49,7 +62,21 @@ namespace IR {
       if(state == 1){
           irstate = valuotokeyConversion();
           if(irstate != -1){
-              control.raiseEvent(11, 22);
+              //serial.writeValue("irstate", irstate)
+              //serial.writeValue("irstateLast", irstateLast)
+              if (irstate != irstateLast)
+              {
+                  irstateTime = control.millis();
+                  control.raiseEvent(11, 22);
+              } else {
+                  
+                  //music.playTone(Note.C, 200)
+                  if (control.millis() > irstateTime + 500)
+                  {
+                      control.raiseEvent(11, 22);
+                  }
+              }
+              irstateLast = irstate;
           }
       }
       
