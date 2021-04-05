@@ -8,7 +8,8 @@
     "files": [
         "README.md",
         "main.ts",
-        "IR.ts"
+        "IR.ts",
+        "IR.cpp"
     ],
     "testFiles": [
         "test.ts"
