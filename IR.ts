@@ -11,15 +11,6 @@ namespace IR {
   let irstate:number;
   let state:number;
 
-  /**
-  * initialization
-  */
-  //% blockId=IR_remote_init
-  //% blockGap=20 weight=90
-  //% block="connect ir receiver to %pin"
-  export function init(pin: number): void {
-    return
-  }
 
   //% blockId=IR_remote_read block="read IR key value"
   export function IR_read(): number {
@@ -43,13 +34,13 @@ namespace IR {
   }
 
   //% advanced=true shim=IR::irCode
-  function irCode(): number {
+  function irCode(pinNo: number): number {
       return -2;
   }
 
   function valuotokeyConversion():number{
       let irdata:number = -1;
-      let irCd: number = irCode()
+      let irCd: number = irCode(1)
       if (irCd != 0) irdata = irCd
       return irdata;
   }
