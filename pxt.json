@@ -7,7 +7,12 @@
     },
     "files": [
         "README.md",
-        "main.ts"
+        "main.ts",
+        "IR.ts",
+        "IR.cpp",
+        "ReceiverIR.cpp",
+        "ReceiverIR.h",
+        "RemoteIR.h"
     ],
     "testFiles": [
         "test.ts"
